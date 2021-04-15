@@ -1,0 +1,13 @@
+/*---------------------------
+  foundation
+---------------------------*/
+@import './foundation/variable';
+@import './foundation/mixin';
+
+/*---------------------------
+  layout
+---------------------------*/
+@import "./layout/_reset";
+@import "./layout/_base";
+
+@import "./parts/parts";

@@ -1,0 +1,15 @@
+$black: #000;
+$baseColor: #f5f5f5;
+$darkShadowColor: #331f0028;
+$lightShadowColor: #ffffff;
+
+$baseTextColor: #4a4b50;
+$emTextColor: #f9a826;
+$emTextColor2: #262e77;
+
+$breakpoints: (
+  "sm": "screen and (min-width: 375px)",
+  "md": "screen and (min-width: 768px)",
+  "lg": "screen and (min-width: 1024px)",//iPad Pro 縦向きまで
+  "xl": "screen and (min-width: 1366px)",//iPad Pro 横向きまで
+) !default;
