@@ -1,4 +1,5 @@
 import React from 'react'
+import PropTypes from 'prop-types'
 import Head from 'next/head'
 import '../styles/style.scss'
 
@@ -29,4 +30,8 @@ export default function MyApp({ Component, pageProps }) {
       </Provider>
     </>
   )
+}
+MyApp.propTypes = {
+  Component: PropTypes.object,
+  pageProps: PropTypes.object
 }

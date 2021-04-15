@@ -1,6 +1,6 @@
 @import "foundation";
 
-// input_bord
+// input_category
 .result {
   display: flex;
   justify-content: space-between;
@@ -10,12 +10,4 @@
   &_num {
     font-size: 24px;
   }
-}
-.row {
-  display: flex;
-  justify-content: space-between;
-  margin-bottom: 20px;
-}
-.row_col {
-  margin-bottom: 50px;
 }

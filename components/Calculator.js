@@ -1,4 +1,5 @@
-import React from 'react';
+import React from 'react'
+import PropTypes from 'prop-types'
 import styles from '../styles/components/calculator.module.scss'
 
 // ボタン単体
@@ -14,6 +15,11 @@ function Button(props) {
     </button >
   )
 }
+Button.propTypes = {
+  value: PropTypes.string,
+  active: PropTypes.bool,
+  onClick: PropTypes.func
+}
 
 // 入力欄
 function InputNum(props) {
@@ -21,10 +27,13 @@ function InputNum(props) {
     <span className={styles.input_num} >{props.num}</span>
   )
 }
+InputNum.propTypes = {
+  num: PropTypes.string
+}
 
 class Calculator extends React.Component {
   constructor(props) {
-    super(props);
+    super(props)
     this.state = {
       inputNum: '',
       calcFlag: false,
@@ -34,7 +43,7 @@ class Calculator extends React.Component {
       divide: false,
       equal: false,
       inputArr: []
-    };
+    }
   }
 
   render() {
@@ -112,11 +121,11 @@ class Calculator extends React.Component {
   * - 計算本体の処理を呼び出す
   */
   handleClick(value) {
-    let inputNum = '';
+    let inputNum = ''
 
     // 文字削除
     if (value === 'del') {
-      inputNum = inputNum.slice(0, -1);
+      inputNum = inputNum.slice(0, -1)
 
       // 足し算
     } else if (value === 'add') {
@@ -126,7 +135,7 @@ class Calculator extends React.Component {
         multiply: false,
         divide: false,
         equal: false,
-      });
+      })
       this.calculate('add')
 
       // ひき算
@@ -137,7 +146,7 @@ class Calculator extends React.Component {
         multiply: false,
         divide: false,
         equal: false,
-      });
+      })
       this.calculate('subtract')
 
       // かけ算
@@ -148,7 +157,7 @@ class Calculator extends React.Component {
         multiply: true,
         divide: false,
         equal: false,
-      });
+      })
       this.calculate('multiply')
 
       // わり算
@@ -159,7 +168,7 @@ class Calculator extends React.Component {
         multiply: false,
         divide: true,
         equal: false,
-      });
+      })
       this.calculate('divide')
 
       // イコール
@@ -170,7 +179,7 @@ class Calculator extends React.Component {
         multiply: false,
         divide: false,
         equal: true,
-      });
+      })
       this.calculate('equal')
 
       // 単純に数字ボタンの場合
@@ -182,13 +191,13 @@ class Calculator extends React.Component {
         this.setState({
           calcFlag: false,
           equal: false
-        });
+        })
       } else {
         // 数字ボタンが連続で押下された場合
         inputNum = this.state.inputNum + value
-        this.props.update(inputNum);
+        this.props.update(inputNum)
       }
-      this.setState({ inputNum: inputNum });
+      this.setState({ inputNum: inputNum })
     }
   }
 
@@ -196,41 +205,41 @@ class Calculator extends React.Component {
   * 計算機本体の処理
   */
   calculate(calcMark) {
-    let result;
-    let tempArr = this.state.inputArr;
+    let result
+    let tempArr = this.state.inputArr
     if (!this.state.calcFlag) {
-      this.setState({ calcFlag: true });
+      this.setState({ calcFlag: true })
       tempArr.push(Number(this.state.inputNum))
       console.log(tempArr)
 
       if (tempArr.length >= 3) {
         switch (tempArr[1]) {
-          case 'add':
-            result = tempArr[0] + tempArr[2]
-            break;
-          case 'subtract':
-            result = tempArr[0] - tempArr[2]
-            break;
-          case 'multiply':
-            result = tempArr[0] * tempArr[2]
-            break;
-          case 'divide':
-            result = tempArr[0] / tempArr[2]
-            break;
-          default:
-            break;
+        case 'add':
+          result = tempArr[0] + tempArr[2]
+          break
+        case 'subtract':
+          result = tempArr[0] - tempArr[2]
+          break
+        case 'multiply':
+          result = tempArr[0] * tempArr[2]
+          break
+        case 'divide':
+          result = tempArr[0] / tempArr[2]
+          break
+        default:
+          break
         }
 
-        this.setState({ inputNum: result });
+        this.setState({ inputNum: result })
 
         if (calcMark === 'equal') {
           tempArr = []
-          this.setState({ calcFlag: false });
-          this.setState({ inputArr: tempArr });
+          this.setState({ calcFlag: false })
+          this.setState({ inputArr: tempArr })
         } else {
           tempArr.push(Number(result), calcMark)
-          const tempArr2 = tempArr.slice(3);
-          this.setState({ inputArr: tempArr2 });
+          const tempArr2 = tempArr.slice(3)
+          this.setState({ inputArr: tempArr2 })
         }
 
         this.clickButton(result)
@@ -264,12 +273,16 @@ class Calculator extends React.Component {
       divide: false,
       equal: false,
       inputArr: []
-    });
+    })
   }
 
   clickButton(result) {
-    return this.props.update(result);
+    return this.props.update(result)
   }
 }
 
-export default Calculator;
+Calculator.propTypes = {
+  update: PropTypes.func
+}
+
+export default Calculator

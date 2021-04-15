@@ -1,10 +1,10 @@
 .c-btn {
   display: inline-block;
-  border: 1px solid;
   padding: 12px;
   min-width: 40%;
   text-align: center;
   border-radius: 3px;
+  @include neumorphism();
 
   &__inr {
     display: inline-block;

@@ -1,0 +1,45 @@
+{
+    "env": {
+        "browser": true,
+        "es2021": true
+    },
+    "extends": [
+        "eslint:recommended",
+        "plugin:react/recommended"
+    ],
+    "parserOptions": {
+        "ecmaFeatures": {
+            "jsx": true
+        },
+        "ecmaVersion": 12,
+        "sourceType": "module"
+    },
+    "plugins": [
+        "react"
+    ],
+    "rules": {
+        // 不要なカッコは消す
+        "no-extra-parens": 1,
+        // 無駄なスペースは削除
+        "no-multi-spaces": 2,
+        // 関数とカッコはあけない(function hoge() {/** */})
+        "func-call-spacing": [
+            2,
+            "never"
+        ],
+        // true/falseを無駄に使うな
+        "no-unneeded-ternary": 2,
+        // セミコロンは禁止
+        "semi": [
+            2,
+            "never"
+        ],
+        // jsのインデントは２
+        "indent": [
+            2,
+            2
+        ],
+        // 配列のindexには空白入れるな(hogehoge[ x ])
+        "computed-property-spacing": 2
+    }
+}

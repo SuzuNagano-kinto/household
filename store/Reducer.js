@@ -14,10 +14,10 @@ const initialState = {
 export default function reducer(state = initialState, action) {
   console.log(action)
   switch (action.type) {
-    case ActionTypes.CALC: {
-      return { num: state.num + 1, result: action.result }
-    }
-    default:
-      return state;
+  case ActionTypes.CALC: {
+    return { num: state.num + 1, result: action.result }
+  }
+  default:
+    return state
   }
 }

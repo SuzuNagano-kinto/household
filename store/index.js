@@ -1,3 +1,4 @@
+/* eslint-disable no-undef */
 import { createStore, applyMiddleware } from 'redux'
 // クロームのextentionでReduxを確認するツール
 import { composeWithDevTools } from 'redux-devtools-extension'
@@ -24,6 +25,6 @@ export default function configureStore() {
     reducer,
     //store生成時に、applyMiddlewareでredux-thunkを使えるように適用する。
     bindMiddleware([thunkMiddleware]),
-  );
+  )
   return store
 }

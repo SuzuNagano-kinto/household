@@ -1,20 +1,20 @@
-import React from 'react'
-import Layout from '../../components/LayoutInput';
-import Link from 'next/link';
-import styles from '../../styles/page/input_bord.module.scss'
-
-
+import React from "react"
+import Link from "next/link"
+import PropTypes from "prop-types"
 // connectとは、Reduxの「store」にReactがアクセスするための関数
-import { connect } from 'react-redux'
+import { connect } from "react-redux"
+
+import Layout from "../../components/LayoutInput"
+import styles from "../../styles/page/input_bord.module.scss"
 
 class bord extends React.Component {
   constructor(props) {
-    super(props);
-    this.state = {};
+    super(props)
+    this.state = {}
   }
 
   render() {
-    console.log('🐓 input bord page')
+    console.log("🐓 input bord page")
     return (
       <Layout>
         <p className={styles.result}>
@@ -60,6 +60,11 @@ class bord extends React.Component {
   }
 }
 
+bord.propTypes = {
+  result: PropTypes.number,
+  calculate: PropTypes.func
+}
+
 // mapStateToPropsはでっかいstateの中から、対象のコンポーネントに合ったプロパティを生成する為のもの
 function mapStateToProps(state) {
   return {
@@ -69,4 +74,4 @@ function mapStateToProps(state) {
 }
 
 // export default bord;
-export default connect(mapStateToProps)(bord);
+export default connect(mapStateToProps)(bord)

@@ -5,12 +5,38 @@
   }
 }
 
+@mixin neumorphism($radius: 6px) {
+  border-radius: $radius;
+  background: $baseColor;
+  box-shadow: 4px 2px 8px $darkShadowColor, -4px -3px 4px $lightShadowColor;
+}
+
+@mixin neumorphismInset($radius: 6px) {
+  border-radius: $radius;
+  background: $baseColor;
+  box-shadow: inset 3px 3px 8px $darkShadowColor, inset -6px -6px 6px $lightShadowColor;
+  // box-shadow: 6px 6px 12px #dcdcdc, -6px -6px 12px #ffffff;
+}
+
 // font
 @mixin notoSansMd {
-  font-family: 'Noto Sans JP', sans-serif;
+  font-family: "Noto Sans JP", sans-serif;
   font-weight: 500;
 }
 @mixin notoSansB {
-  font-family: 'Noto Sans JP', sans-serif;
+  font-family: "Noto Sans JP", sans-serif;
   font-weight: 700;
+}
+
+@mixin roundR {
+  font-family: "M PLUS Rounded 1c", sans-serif;
+  font-weight: 400;
+}
+@mixin roundMd {
+  font-family: "M PLUS Rounded 1c", sans-serif;
+  font-weight: 500;
+}
+@mixin roundL {
+  font-family: "M PLUS Rounded 1c", sans-serif;
+  font-weight: 300;
 }

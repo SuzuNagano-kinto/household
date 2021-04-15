@@ -1,32 +1,40 @@
-import React from 'react'
-import Link from 'next/link';
-import firebase from 'firebase/app';
-import 'firebase/firestore';
+import React from "react"
+import Link from "next/link"
+import PropTypes from "prop-types"
+import { connect } from "react-redux"
 
-import Layout from '../../components/LayoutInput';
-import CategoryList from '../../components/CategoryList';
+import firebase from "firebase/app"
+import "firebase/firestore"
 
-class category extends React.Component {
+import Layout from "../../components/LayoutInput"
+import CategoryList from "../../components/CategoryList"
+import styles from "../../styles/page/input_category.module.scss"
+
+class Category extends React.Component {
   constructor(props) {
-    super(props);
+    super(props)
     this.state = {
-      name: '',
+      name: "",
       data: {}
-    };
+    }
 
     this.init()
   }
 
   // DOM にレンダーされた後に実行
   componentDidMount() {
-    console.log('🐓 componentDidMount')
+    console.log("🐓 componentDidMount")
     this.getData()
   }
 
   render() {
-    console.log('🐓 input category page')
+    console.log("🐓 input category page")
     return (
       <Layout>
+        <p className={styles.result}>
+          <span className={styles.result_unit}>¥</span>
+          <span className={styles.result_num}>{this.props.result}</span>
+        </p>
         <h1>カテゴリ</h1>
         <CategoryList data={this.state.data} />
         <div className="c-btn__wrap--center">
@@ -39,7 +47,7 @@ class category extends React.Component {
   }
 
   init() {
-    console.log('init')
+    console.log("init")
     // Your web app's Firebase configuration
     // For Firebase JS SDK v7.20.0 and later, measurementId is optional
     var firebaseConfig = {
@@ -50,17 +58,17 @@ class category extends React.Component {
       messagingSenderId: "1012625851416",
       appId: "1:1012625851416:web:4b8827f72d9bcf99322f6d",
       measurementId: "G-0NG8R0KTEY"
-    };
+    }
     // Initialize Firebase
     if (firebase.apps.length === 0) {
-      firebase.initializeApp(firebaseConfig);
+      firebase.initializeApp(firebaseConfig)
     }
   }
 
   getData() {
-    const db = firebase.firestore();
-    const usersCollectionRef = db.collection('user')
-    const cateRef = usersCollectionRef.doc('category');
+    const db = firebase.firestore()
+    const usersCollectionRef = db.collection("user")
+    const cateRef = usersCollectionRef.doc("category")
 
     let self = this
     cateRef.get().then((doc) => {
@@ -71,4 +79,17 @@ class category extends React.Component {
   }
 }
 
-export default category;
+Category.propTypes = {
+  result: PropTypes.number,
+  calculate: PropTypes.func
+}
+
+// mapStateToPropsはでっかいstateの中から、対象のコンポーネントに合ったプロパティを生成する為のもの
+function mapStateToProps(state) {
+  return {
+    num: state.num,
+    result: state.result
+  }
+}
+
+export default connect(mapStateToProps)(Category)
