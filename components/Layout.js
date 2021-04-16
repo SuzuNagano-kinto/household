@@ -1,8 +1,9 @@
 import React from 'react'
+import PropTypes from "prop-types"
 
 class Layout extends React.Component {
   constructor(props) {
-    super(props);
+    super(props)
   }
   render() {
     console.log('🐓 layout')
@@ -14,5 +15,7 @@ class Layout extends React.Component {
   }
 }
 
-
-export default Layout;
+Layout.propTypes = {
+  children: PropTypes.node
+}
+export default Layout

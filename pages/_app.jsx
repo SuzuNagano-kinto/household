@@ -18,6 +18,7 @@ import configureStore from '../store/index'
 const myStore = configureStore()
 
 export default function MyApp({ Component, pageProps }) {
+  console.log(Component)
   return (
     <>
       <Provider store={myStore}>

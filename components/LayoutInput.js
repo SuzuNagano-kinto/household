@@ -3,18 +3,19 @@
 */
 
 import React from 'react'
+import PropTypes from 'prop-types'
 
 class LayoutInput extends React.Component {
   constructor(props) {
-    super(props);
+    super(props)
   }
 
   updateCalcNum(value) {
-    this.setState({ num: value });
+    this.setState({ num: value })
   }
 
   render() {
-    console.log('🐓 Layout Input')
+    console.log('🐓 LayoutInput')
     return (
       <div className="input">
         {this.props.children}
@@ -23,4 +24,8 @@ class LayoutInput extends React.Component {
   }
 }
 
-export default LayoutInput;
+LayoutInput.propTypes = {
+  children: PropTypes.node
+}
+
+export default LayoutInput

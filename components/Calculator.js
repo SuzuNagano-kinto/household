@@ -3,6 +3,11 @@ import PropTypes from 'prop-types'
 import styles from '../styles/components/calculator.module.scss'
 
 // ボタン単体
+Button.propTypes = {
+  value: PropTypes.string,
+  active: PropTypes.bool,
+  onClick: PropTypes.func
+}
 function Button(props) {
   return (
     <button
@@ -15,20 +20,15 @@ function Button(props) {
     </button >
   )
 }
-Button.propTypes = {
-  value: PropTypes.string,
-  active: PropTypes.bool,
-  onClick: PropTypes.func
-}
 
 // 入力欄
+InputNum.propTypes = {
+  num: PropTypes.string
+}
 function InputNum(props) {
   return (
     <span className={styles.input_num} >{props.num}</span>
   )
-}
-InputNum.propTypes = {
-  num: PropTypes.string
 }
 
 class Calculator extends React.Component {
