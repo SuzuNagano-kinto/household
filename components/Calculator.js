@@ -67,7 +67,10 @@ class Calculator extends React.Component {
             <Button value="9" onClick={() => this.handleClick('9')} />
           </li>
           <li>
-            <Button value="÷" onClick={() => this.handleClick('divide')} active={this.state.divide} />
+            <Button
+              value="÷"
+              onClick={() => this.handleClick('divide')}
+              active={this.state.divide} />
           </li>
           <li>
             <Button value="4" onClick={() => this.handleClick('4')} />
@@ -79,7 +82,10 @@ class Calculator extends React.Component {
             <Button value="6" onClick={() => this.handleClick('6')} />
           </li>
           <li>
-            <Button value="×" onClick={() => this.handleClick('multiply')} active={this.state.multiply} />
+            <Button
+              value="×"
+              onClick={() => this.handleClick('multiply')}
+              active={this.state.multiply} />
           </li>
           <li>
             <Button value="1" onClick={() => this.handleClick('1')} />
@@ -91,7 +97,10 @@ class Calculator extends React.Component {
             <Button value="3" onClick={() => this.handleClick('3')} />
           </li>
           <li>
-            <Button value="-" onClick={() => this.handleClick('subtract')} active={this.state.subtract} />
+            <Button
+              value="-"
+              onClick={() => this.handleClick('subtract')}
+              active={this.state.subtract} />
           </li>
           <li>
             <Button value="00" onClick={() => this.handleClick('00')} />
@@ -103,7 +112,10 @@ class Calculator extends React.Component {
             <Button value="." onClick={() => this.handleClick('.')} />
           </li>
           <li>
-            <Button value="+" onClick={() => this.handleClick('add')} active={this.state.add} />
+            <Button
+              value="+"
+              onClick={() => this.handleClick('add')}
+              active={this.state.add} />
           </li>
           <li className={styles.item_equal}>
             <Button value="=" onClick={() => this.handleClick('equal')} />

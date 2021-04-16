@@ -4,6 +4,7 @@
 
 import React from 'react'
 import PropTypes from 'prop-types'
+import PayCategory from './PayCategory'
 
 class LayoutInput extends React.Component {
   constructor(props) {
@@ -18,6 +19,7 @@ class LayoutInput extends React.Component {
     console.log('🐓 LayoutInput')
     return (
       <div className="input">
+        <PayCategory />
         {this.props.children}
       </div>
     )

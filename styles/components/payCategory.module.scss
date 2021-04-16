@@ -1,0 +1,13 @@
+@import "foundation";
+
+// payCategory
+.list {
+  display: flex;
+  justify-content: space-between;
+  margin: 30px auto 40px;
+  max-width: 290px;
+}
+
+.active {
+  @include neumorphismInset();
+}
