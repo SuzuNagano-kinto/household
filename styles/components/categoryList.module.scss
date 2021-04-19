@@ -1,0 +1,15 @@
+@import "foundation";
+
+// categoryList
+.wrap {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+.item {
+  width: 46%;
+  margin-bottom: 15px;
+  button {
+    width: 100%;
+  }
+}
