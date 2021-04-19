@@ -137,7 +137,8 @@ class Calculator extends React.Component {
 
     // 文字削除
     if (value === 'del') {
-      inputNum = inputNum.slice(0, -1)
+      inputNum = String(this.state.inputNum).slice(0, -1)
+      this.setState({ inputNum: inputNum })
 
       // 足し算
     } else if (value === 'add') {
@@ -242,7 +243,7 @@ class Calculator extends React.Component {
           break
         }
 
-        this.setState({ inputNum: result })
+        this.setState({ inputNum: String(result) })
 
         if (calcMark === 'equal') {
           tempArr = []

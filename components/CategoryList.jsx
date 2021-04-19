@@ -1,5 +1,6 @@
 import React from 'react'
 import PropTypes from "prop-types"
+import styles from '../styles/components/categoryList.module.scss'
 
 class CategoryList extends React.Component {
   constructor(props) {
@@ -18,8 +19,8 @@ class CategoryList extends React.Component {
 
     const list = Object.keys(categories).map((key) => {
       return (
-        <li key={'item-' + key} className={'category__item category__item--' + key}>
-          <button className='c-btn--circle' onClick={(e) => this.handleClick(e)}>
+        <li key={'item-' + key} className={`${styles.item} categoryList_item_${key}`}>
+          <button className='c-btn' onClick={(e) => this.handleClick(e)}>
             {categories[key].ja}
           </button>
         </li >
@@ -27,7 +28,7 @@ class CategoryList extends React.Component {
     })
 
     return (
-      <ul className="category__list" > {list}</ul>
+      <ul className={styles.wrap}> {list}</ul>
     )
   }
 
