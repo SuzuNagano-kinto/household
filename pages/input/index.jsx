@@ -51,8 +51,8 @@ Input.propTypes = {
 // mapStateToPropsはstoreが持っているstateをpropsに入れて子コンポーネントに渡す
 function mapStateToProps(state) {
   return {
-    num: state.num,
-    result: state.result
+    num: state.data.num,
+    result: state.data.result
   }
 }
 
@@ -60,13 +60,9 @@ function mapStateToProps(state) {
 // 第一引数 = dispatch:ストアが更新されるたび呼び出される関数
 // 第二引数 = ownProps:dispatchを通じてstateを書き換えます
 function mapDispatchToProps(dispatch) {
-  console.log('mapDispatchToProps')
   return {
-    calculate: (num) => dispatch(calcResult(num))
+    calculate: (num) => dispatch(calcResult(num)),
   }
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(Input)
-
-
-// export default Input;

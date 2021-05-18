@@ -15,13 +15,12 @@ import '../styles/style.scss'
 // ②ラップしたコンポーネントにstore情報を渡す
 import { Provider } from 'react-redux'
 import configureStore from '../store/index'
-const myStore = configureStore()
+const store = configureStore()
 
 export default function MyApp({ Component, pageProps }) {
-  console.log(Component)
   return (
     <>
-      <Provider store={myStore}>
+      <Provider store={store}>
         <Head>
           <title>家計簿</title>
         </Head>

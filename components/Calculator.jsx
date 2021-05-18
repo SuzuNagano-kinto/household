@@ -1,5 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
+import { connect } from "react-redux"
 import styles from '../styles/components/calculator.module.scss'
 
 // ボタン単体
@@ -35,7 +36,7 @@ class Calculator extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
-      inputNum: '',
+      inputNum: this.props.result ? String(this.props.result) : '',
       calcFlag: false,
       add: false,
       subtract: false,
@@ -196,7 +197,7 @@ class Calculator extends React.Component {
       this.calculate('equal')
 
       // 単純に数字ボタンの場合
-      // 数字ボタンが連続で押下された場合桁が増えるので数字以外のボタンが押されるまで値が確定にならない
+      // 数字ボタンが連続で押下された場合桁が増えるので数字以外のボタンが押されるまで計算はできない
     } else {
       // 演算子が押されている場合、入力された値をクリアする
       if (this.state.calcFlag || this.state.equal) {
@@ -215,7 +216,7 @@ class Calculator extends React.Component {
   }
 
   /*
-  * 計算機本体の処理
+  * 計算処理
   */
   calculate(calcMark) {
     let result
@@ -274,7 +275,9 @@ class Calculator extends React.Component {
     }
     console.log(tempArr)
   }
-
+  /*
+  * 破棄
+  */
   destory() {
     console.log('destory')
     this.setState({
@@ -295,7 +298,16 @@ class Calculator extends React.Component {
 }
 
 Calculator.propTypes = {
-  update: PropTypes.func
+  update: PropTypes.func,
+  result: PropTypes.number
 }
 
-export default Calculator
+function mapStateToProps(state) {
+  return {
+    num: state.data.num,
+    result: state.data.result
+  }
+}
+
+export default connect(mapStateToProps)(Calculator)
+// export default Calculator

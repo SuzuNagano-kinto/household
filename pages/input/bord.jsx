@@ -10,7 +10,9 @@ import styles from "../../styles/page/input_bord.module.scss"
 class bord extends React.Component {
   constructor(props) {
     super(props)
-    this.state = {}
+    this.state = {
+      pay: this.props.payTxt
+    }
   }
 
   render() {
@@ -24,7 +26,7 @@ class bord extends React.Component {
 
         <ul>
           <li className={styles.row }>
-            <p>支出＞光熱費＞電気</p>
+            <p>{this.props.payTxt}</p>
             <Link href="/input/category">
               <a className="c-btn--small">
                 <span className="c-btn__inr">変更</span>
@@ -62,16 +64,17 @@ class bord extends React.Component {
 
 bord.propTypes = {
   result: PropTypes.number,
-  calculate: PropTypes.func
+  calculate: PropTypes.func,
+  payTxt: PropTypes.string
 }
 
-// mapStateToPropsはでっかいstateの中から、対象のコンポーネントに合ったプロパティを生成する為のもの
+// mapStateToPropsはstateの中から、対象のコンポーネントに合ったプロパティを生成する為のもの
 function mapStateToProps(state) {
   return {
-    num: state.num,
-    result: state.result
+    num: state.data.num,
+    result: state.data.result,
+    payTxt: state.data.pay.txt
   }
 }
 
-// export default bord;
 export default connect(mapStateToProps)(bord)
