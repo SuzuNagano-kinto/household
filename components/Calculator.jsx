@@ -1,6 +1,8 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import { connect } from "react-redux"
+import { calcResult } from '../store/Action'
+
 import styles from '../styles/components/calculator.module.scss'
 
 // ボタン単体
@@ -19,16 +21,6 @@ function Button(props) {
     >
       {props.value}
     </button >
-  )
-}
-
-// 入力欄
-InputNum.propTypes = {
-  num: PropTypes.string
-}
-function InputNum(props) {
-  return (
-    <span className={styles.input_num} >{props.num}</span>
   )
 }
 
@@ -51,12 +43,6 @@ class Calculator extends React.Component {
     console.log('🐣 Calculator')
     return (
       <div className={styles.calculator}>
-        <div className={styles.input}>
-          <p className={styles.input_box}>
-            <span className={styles.input_unit}>¥</span>
-            <InputNum className={styles.input_num} num={this.state.inputNum} />
-          </p>
-        </div>
         <ul className={styles.grid}>
           <li>
             <Button value="7" onClick={() => this.handleClick('7')} />
@@ -140,6 +126,7 @@ class Calculator extends React.Component {
     if (value === 'del') {
       inputNum = String(this.state.inputNum).slice(0, -1)
       this.setState({ inputNum: inputNum })
+      this.props.calculate(inputNum)
 
       // 足し算
     } else if (value === 'add') {
@@ -209,9 +196,10 @@ class Calculator extends React.Component {
       } else {
         // 数字ボタンが連続で押下された場合
         inputNum = this.state.inputNum + value
-        this.props.update(inputNum)
+        this.props.calculate(inputNum)
       }
       this.setState({ inputNum: inputNum })
+      this.props.calculate(inputNum)
     }
   }
 
@@ -245,6 +233,7 @@ class Calculator extends React.Component {
         }
 
         this.setState({ inputNum: String(result) })
+        this.props.calculate(result)
 
         if (calcMark === 'equal') {
           tempArr = []
@@ -299,15 +288,21 @@ class Calculator extends React.Component {
 
 Calculator.propTypes = {
   update: PropTypes.func,
-  result: PropTypes.number
+  result: PropTypes.number,
+  calculate: PropTypes.func
 }
 
 function mapStateToProps(state) {
   return {
-    num: state.data.num,
     result: state.data.result
   }
 }
 
-export default connect(mapStateToProps)(Calculator)
+function mapDispatchToProps(dispatch) {
+  return {
+    calculate: (num) => dispatch(calcResult(num)),
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Calculator)
 // export default Calculator

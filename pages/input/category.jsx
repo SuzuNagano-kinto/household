@@ -6,7 +6,7 @@ import { connect } from "react-redux"
 import firebase from "firebase/app"
 import "firebase/firestore"
 
-import Layout from "../../components/LayoutInput"
+import CalcInput from "../../components/CalcInput"
 import CategoryList from "../../components/CategoryList"
 import styles from "../../styles/page/input_category.module.scss"
 
@@ -30,11 +30,8 @@ class Category extends React.Component {
   render() {
     console.log("🐓 input category page")
     return (
-      <Layout>
-        <p className={styles.result}>
-          <span className={styles.result_unit}>¥</span>
-          <span className={styles.result_num}>{this.props.result}</span>
-        </p>
+      <div>
+        <CalcInput style="input" />
         <h1>カテゴリ</h1>
         <CategoryList data={this.state.data} />
         <div className="c-btn__wrap--center">
@@ -42,7 +39,7 @@ class Category extends React.Component {
             <a className="c-btn">もどる</a>
           </Link>
         </div>
-      </Layout >
+      </div >
     )
   }
 

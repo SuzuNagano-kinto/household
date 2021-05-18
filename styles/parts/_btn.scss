@@ -4,6 +4,7 @@
   min-width: 40%;
   text-align: center;
   border-radius: 3px;
+  transition: all 0.2s ease-in;
   @include neumorphism();
 
   &__inr {
@@ -25,5 +26,6 @@
 
   &.active {
     @include neumorphismInset();
+    transition: all 0.2s ease-in;
   }
 }

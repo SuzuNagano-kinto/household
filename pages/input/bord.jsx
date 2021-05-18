@@ -4,7 +4,7 @@ import PropTypes from "prop-types"
 // connectとは、Reduxの「store」にReactがアクセスするための関数
 import { connect } from "react-redux"
 
-import Layout from "../../components/LayoutInput"
+import CalcInput from "../../components/CalcInput"
 import styles from "../../styles/page/input_bord.module.scss"
 
 class bord extends React.Component {
@@ -18,14 +18,10 @@ class bord extends React.Component {
   render() {
     console.log("🐓 input bord page")
     return (
-      <Layout>
-        <p className={styles.result}>
-          <span className={styles.result_unit}>¥</span>
-          <span className={styles.result_num}>{this.props.result}</span>
-        </p>
-
+      <div className="input_bord">
+        <CalcInput style="bord" />
         <ul>
-          <li className={styles.row }>
+          <li className={styles.row}>
             <p>{this.props.payTxt}</p>
             <Link href="/input/category">
               <a className="c-btn--small">
@@ -57,7 +53,7 @@ class bord extends React.Component {
             <a className="c-btn">記録する</a>
           </Link>
         </div>
-      </Layout>
+      </div>
     )
   }
 }
@@ -71,7 +67,6 @@ bord.propTypes = {
 // mapStateToPropsはstateの中から、対象のコンポーネントに合ったプロパティを生成する為のもの
 function mapStateToProps(state) {
   return {
-    num: state.data.num,
     result: state.data.result,
     payTxt: state.data.pay.txt
   }

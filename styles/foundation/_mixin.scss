@@ -8,13 +8,15 @@
 @mixin neumorphism($radius: 6px) {
   border-radius: $radius;
   background: $baseColor;
-  box-shadow: 4px 2px 8px $darkShadowColor, -4px -3px 4px $lightShadowColor;
+  box-shadow: 4px 2px 8px $darkShadowColor, -4px -3px 4px $lightShadowColor, inset 3px 3px 8px transparent,
+    inset -6px -6px 6px transparent;
 }
 
 @mixin neumorphismInset($radius: 6px) {
   border-radius: $radius;
   background: $baseColor;
-  box-shadow: inset 3px 3px 8px $darkShadowColor, inset -6px -6px 6px $lightShadowColor;
+  box-shadow: 4px 2px 8px transparent, -4px -3px 4px transparent, inset 3px 3px 8px $darkShadowColor,
+    inset -6px -6px 6px $lightShadowColor;
   // box-shadow: 6px 6px 12px #dcdcdc, -6px -6px 12px #ffffff;
 }
 

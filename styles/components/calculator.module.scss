@@ -47,10 +47,11 @@
       align-items: center;
       padding: 20px 20px 15px;
       @include neumorphismInset();
-      min-height: 1.15em;
-    }
-    &_num {
+      min-height: 2.96em;
       font-size: 24px;
+    }
+    &_unit {
+      font-size: 16px;
     }
   }
 }
