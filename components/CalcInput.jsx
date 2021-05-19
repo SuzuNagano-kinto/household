@@ -6,13 +6,13 @@ import styles from '../styles/components/calcInput.module.scss'
 
 
 // 入力欄
-InputNum.propTypes = {
+calcInput.propTypes = {
   num: PropTypes.string,
   style: PropTypes.string
 }
-function InputNum(props) {
+function calcInput(props) {
   return (
-    <div className={`${styles.wrap} ${props.style}`}>
+    <div className={`${styles.wrap}`+ (props.style === "input" ? ` ${styles.input}` : '')}>
       <p className={styles.box}>
         <span className={styles.unit}>¥</span>
         <span className={styles.input_num} >{props.result}</span>
@@ -21,7 +21,7 @@ function InputNum(props) {
   )
 }
 
-InputNum.propTypes = {
+calcInput.propTypes = {
   result: PropTypes.number,
 }
 
@@ -32,4 +32,4 @@ function mapStateToProps(state) {
   }
 }
 
-export default connect(mapStateToProps)(InputNum)
+export default connect(mapStateToProps)(calcInput)

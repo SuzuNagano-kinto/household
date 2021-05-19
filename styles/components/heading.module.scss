@@ -1,0 +1,21 @@
+@import "foundation";
+@import url('https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@400;500&display=swap');
+.wrap {
+  position: relative;
+  padding-bottom: 60px;
+
+  h1 {
+    background: #191f40;
+    color: #fff;
+    position: absolute;
+    top: 0;
+    left: 0;
+    padding: 20px 15px 10px 40px;
+    border-radius: 20px;
+    transform: translate(-50px, -10px);
+    box-shadow: 4px 2px 8px $darkShadowColor;
+    font-size: 14px;
+    @include josefinR;
+    letter-spacing: 0.1em;
+  }
+}

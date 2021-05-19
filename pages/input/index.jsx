@@ -2,8 +2,8 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import Link from 'next/link'
 
+import Heading from "../../components/Heading"
 import Calculator from '../../components/Calculator'
-import PayCategory from '../../components/PayCategory'
 import CalcInput from "../../components/CalcInput"
 
 // connectとは、Reduxの「store」にReactがアクセスするための関数
@@ -27,7 +27,7 @@ class Input extends React.Component {
 
     return (
       <div className="input">
-        <PayCategory />
+        <Heading txt="Input" />
         <CalcInput style="input" />
         <Calculator update={(value) => { this.updateCalcNum(value) }} />
 

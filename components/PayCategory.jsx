@@ -19,10 +19,7 @@ class PayCategory extends React.Component {
     if (this.state.activeId === id) {
       return false
     } else {
-      let removeClassEl = document.getElementById(this.state.activeId)
-      removeClassEl.classList.remove('active')
       this.setState({ activeId: id })
-      event.target.classList.add('active')
     }
 
     // storeに送信する
@@ -39,22 +36,25 @@ class PayCategory extends React.Component {
       <ul className={styles.list}>
         <li className={styles.list_item}>
           <button
-            className={`c-btn--small` + (this.state.activeId === "expense" ? ' active' : '')}
+            className={styles.list_btn}
             id="expense"
+            data-active={this.state.activeId === "expense"}
             onClick={(event) => this.handleClick(event, 'expense')}
           >支出</button>
         </li>
         <li className={styles.list_item}>
           <button
-            className={`c-btn--small` + (this.state.activeId === "income" ? ' active' : '')}
+            className={styles.list_btn}
             id="income"
+            data-active={this.state.activeId === "income"}
             onClick={(event) => this.handleClick(event, 'income')}
           >収入</button>
         </li>
         <li className={styles.list_item}>
           <button
-            className={`c-btn--small` + (this.state.activeId === "forward" ? ' active' : '')}
+            className={styles.list_btn}
             id="forward"
+            data-active={this.state.activeId === "forward"}
             onClick={(event) => this.handleClick(event, 'forward')}
           >立替</button>
         </li>

@@ -1,6 +1,13 @@
 @import "foundation";
 
 // calcInput
+.input {
+  .box {
+    @include neumorphismInset();
+    padding: 20px 20px 15px;
+    min-height: 2.96em;
+  }
+}
 .wrap {
   margin-bottom: 30px;
 }
@@ -8,8 +15,7 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 50px 0 0;
-  min-height: 2.96em;
+  padding: 0;
   font-size: 24px;
 }
 .unit {

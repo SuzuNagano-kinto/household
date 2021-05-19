@@ -4,6 +4,7 @@ import PropTypes from "prop-types"
 // connectとは、Reduxの「store」にReactがアクセスするための関数
 import { connect } from "react-redux"
 
+import Heading from "../../components/Heading"
 import CalcInput from "../../components/CalcInput"
 import styles from "../../styles/page/input_bord.module.scss"
 
@@ -19,6 +20,7 @@ class bord extends React.Component {
     console.log("🐓 input bord page")
     return (
       <div className="input_bord">
+        <Heading txt="Detail" />
         <CalcInput style="bord" />
         <ul>
           <li className={styles.row}>
@@ -41,7 +43,7 @@ class bord extends React.Component {
 
           <li className={`${styles.row_col}`}>
             <p>メモ</p>
-            <textarea name="" id="" cols="30" rows="10"></textarea>
+            <textarea name="" id="" cols="30" rows="5"></textarea>
           </li>
         </ul>
 

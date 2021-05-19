@@ -4,10 +4,24 @@
 .list {
   display: flex;
   justify-content: space-between;
-  margin: 30px auto 40px;
-  max-width: 290px;
+  margin: 0 auto 20px;
+  padding: 10px 15px;
+  // max-width: 340px;
+  width: 100%;
+  @include neumorphismInset(50px);
+
+  &_btn {
+    display: inline-block;
+    padding: 10px 20px;
+    opacity: 0.4;
+    &[data-active="true"] {
+      opacity: 1;
+      @include neumorphism(50px);
+    }
+  }
+
 }
 
 .active {
-  @include neumorphismInset();
+  @include neumorphism(50px);
 }
