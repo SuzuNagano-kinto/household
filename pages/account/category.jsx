@@ -6,11 +6,11 @@ import { connect } from "react-redux"
 import firebase from "firebase/app"
 import "firebase/firestore"
 
-import Heading from "../../components/Heading"
-import CalcInput from "../../components/CalcInput"
-import PayCategory from "../../components/PayCategory"
-import CategoryList from "../../components/CategoryList"
-// import styles from "../../styles/page/input_category.module.scss"
+import Heading from "components/Heading"
+import CalcInput from "components/CalcInput"
+import PayCategory from "components/PayCategory"
+import CategoryList from "components/CategoryList"
+// import styles from "styles/page/input_category.module.scss"
 
 class Category extends React.Component {
   constructor(props) {
@@ -33,12 +33,12 @@ class Category extends React.Component {
     console.log("🐓 input category page")
     return (
       <div className="input_category">
-        <Heading txt="Category" />
+        <Heading txt="家計簿" sub="- カテゴリ" icon="account" />
         <PayCategory />
         <CalcInput style="bord" />
         <CategoryList data={this.state.data} />
         <div className="c-btn__wrap--center">
-          <Link href="/input/bord">
+          <Link href="/account/bord">
             <a className="c-btn">もどる</a>
           </Link>
         </div>

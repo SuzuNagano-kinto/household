@@ -4,7 +4,8 @@
 // stateの変更は必ずActionを経由して行う。
 export const ActionTypes = {
   CALC: 'CALC',
-  PAY: 'PAY'
+  PAY: 'PAY',
+  CATEGORY: 'CATEGORY'
 }
 
 // 金額入力時に呼び出し
@@ -22,5 +23,14 @@ export const changePayType = (result) => (dispatch) => {
   return dispatch({
     type: ActionTypes.PAY,
     pay: result
+  })
+}
+
+// カテゴリーの変更時に呼び出し
+export const changeCategory = (result) => (dispatch) => {
+  console.log('changeCategory',result)
+  return dispatch({
+    type: ActionTypes.CATEGORY,
+    category: result
   })
 }

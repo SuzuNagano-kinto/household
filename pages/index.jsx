@@ -30,7 +30,7 @@ export default function Home() {
             </p>
           </a>
 
-          <Link href="/input">
+          <Link href="/account">
             <a className="card">input</a>
           </Link>
         </div>

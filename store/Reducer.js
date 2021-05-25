@@ -13,6 +13,10 @@ let initialState = {
     pay: {
       id: 'expense',
       txt: '支出'
+    },
+    category: {
+      id: 'food',
+      txt: '食費'
     }
   }
 }
@@ -36,6 +40,11 @@ export default function reducer(state = initialState, action) {
       ...state
     }
 
+  case ActionTypes.CATEGORY:
+    state.data.category = action.category
+    return {
+      ...state
+    }
   default:
     return state
   }

@@ -1,9 +1,9 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import { connect } from "react-redux"
-import { calcResult } from '../store/Action'
+import { calcResult } from 'store/Action'
 
-import styles from '../styles/components/calculator.module.scss'
+import styles from 'styles/components/calculator.module.scss'
 
 // ボタン単体
 Button.propTypes = {

@@ -1,7 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import Head from 'next/head'
-import '../styles/style.scss'
+import 'styles/style.scss'
 
 // 全ページで必要な挙動を書ける場所
 // - ページ移動間の固定レイアウト
@@ -14,7 +14,7 @@ import '../styles/style.scss'
 // ①Reactコンポーネント内でreact-reduxのconnect()関数を使えるようにする
 // ②ラップしたコンポーネントにstore情報を渡す
 import { Provider } from 'react-redux'
-import configureStore from '../store/index'
+import configureStore from 'store/index'
 const store = configureStore()
 
 export default function MyApp({ Component, pageProps }) {

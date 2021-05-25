@@ -2,8 +2,8 @@ import React from 'react'
 import PropTypes from 'prop-types'
 // connectとは、Reduxの「store」にReactがアクセスするための関数
 import { connect } from 'react-redux'
-import { changePayType } from '../store/Action'
-import styles from '../styles/components/payCategory.module.scss'
+import { changePayType } from 'store/Action'
+import styles from 'styles/components/payCategory.module.scss'
 
 
 class PayCategory extends React.Component {
@@ -14,8 +14,6 @@ class PayCategory extends React.Component {
     }
   }
   handleClick(event, id) {
-    console.log(event)
-
     if (this.state.activeId === id) {
       return false
     } else {

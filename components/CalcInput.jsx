@@ -2,7 +2,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import { connect } from "react-redux"
 
-import styles from '../styles/components/calcInput.module.scss'
+import styles from 'styles/components/calcInput.module.scss'
 
 
 // 入力欄
