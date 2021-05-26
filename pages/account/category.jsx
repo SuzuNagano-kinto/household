@@ -30,7 +30,7 @@ class Category extends React.Component {
   }
 
   render() {
-    console.log("🐓 input category page")
+    console.log(this.state)
     return (
       <div className="input_category">
         <Heading txt="家計簿" sub="- カテゴリ" icon="account" />
@@ -39,7 +39,7 @@ class Category extends React.Component {
         <CategoryList data={this.state.data} />
         <div className="c-btn__wrap--center">
           <Link href="/account/bord">
-            <a className="c-btn">もどる</a>
+            <a className="c-btn">決定</a>
           </Link>
         </div>
       </div >
@@ -66,6 +66,8 @@ class Category extends React.Component {
   }
 
   getData() {
+    console.log("getData")
+
     const db = firebase.firestore()
     const usersCollectionRef = db.collection("user")
     const cateRef = usersCollectionRef.doc("category")
@@ -75,7 +77,7 @@ class Category extends React.Component {
       self.setState({ data: doc.data() })
     })
 
-    console.log(this.state.data)
+    console.log(this.state.inputData)
   }
 }
 
@@ -87,8 +89,8 @@ Category.propTypes = {
 // mapStateToPropsはでっかいstateの中から、対象のコンポーネントに合ったプロパティを生成する為のもの
 function mapStateToProps(state) {
   return {
-    num: state.num,
-    result: state.result
+    num: state.inputData.num,
+    result: state.inputData.result
   }
 }
 

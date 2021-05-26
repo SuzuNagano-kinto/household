@@ -294,7 +294,7 @@ Calculator.propTypes = {
 
 function mapStateToProps(state) {
   return {
-    result: state.data.result
+    result: state.inputData.result
   }
 }
 

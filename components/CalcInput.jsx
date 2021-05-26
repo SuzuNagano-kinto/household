@@ -28,7 +28,7 @@ calcInput.propTypes = {
 // mapStateToPropsはstateの中から、対象のコンポーネントに合ったプロパティを生成する為のもの
 function mapStateToProps(state) {
   return {
-    result: state.data.result,
+    result: state.inputData.result,
   }
 }
 

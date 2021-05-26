@@ -1,6 +1,29 @@
 @import "foundation";
 
 // categoryList
+.cont {
+  overflow: hidden;
+  margin-bottom: 50px;
+  &_inr {
+    display: flex;
+    > div {
+      width: 100%;
+      flex-shrink: 0;
+      display: none;
+    }
+  }
+
+  &[data-active="expense"] {
+    div[data-target="expense"] {
+      display: block;
+    }
+  }
+  &[data-active="income"] {
+    div[data-target="income"] {
+      display: block;
+    }
+  }
+}
 .wrap {
   display: flex;
   flex-wrap: wrap;

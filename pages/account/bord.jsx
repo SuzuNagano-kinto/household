@@ -17,7 +17,7 @@ class bord extends React.Component {
   }
 
   render() {
-    console.log("🐓 input bord page")
+    console.log("🐓bord page")
     return (
       <div className="input_bord">
         <Heading txt="家計簿" sub="- 詳細" icon="account" />
@@ -25,8 +25,8 @@ class bord extends React.Component {
         <ul>
           <li className={styles.row}>
             <p className={styles.row_cate}>
-              <span>{this.props.payTxt}</span>
-              <span>{this.props.categoryTxt}</span>
+              {this.props.payTxt && <span>{this.props.payTxt}</span>}
+              {this.props.categoryTxt && <span>{this.props.categoryTxt}</span>}
             </p>
             <Link href="/account/category">
               <a className="c-btn--small">
@@ -73,9 +73,9 @@ bord.propTypes = {
 // mapStateToPropsはstateの中から、対象のコンポーネントに合ったプロパティを生成する為のもの
 function mapStateToProps(state) {
   return {
-    result: state.data.result,
-    payTxt: state.data.pay.txt,
-    categoryTxt: state.data.category.txt
+    result: state.inputData.result,
+    payTxt: state.inputData.pay.txt,
+    categoryTxt: state.inputData.category.txt
   }
 }
 

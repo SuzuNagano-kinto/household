@@ -55,7 +55,7 @@ Input.propTypes = {
 // mapStateToPropsはstoreが持っているstateをpropsに入れて子コンポーネントに渡す
 function mapStateToProps(state) {
   return {
-    result: state.data.result
+    result: state.inputData.result
   }
 }
 

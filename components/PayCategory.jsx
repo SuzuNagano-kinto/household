@@ -69,8 +69,8 @@ PayCategory.propTypes = {
 
 function mapStateToProps(state) {
   return {
-    payType: state.data.pay.id,
-    payTxt: state.data.pay.txt
+    payType: state.inputData.pay.id,
+    payTxt: state.inputData.pay.txt
   }
 }
 

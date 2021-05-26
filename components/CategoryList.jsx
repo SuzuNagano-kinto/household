@@ -1,4 +1,5 @@
 import React from 'react'
+import Router from 'next/router'
 import PropTypes from "prop-types"
 import { connect } from "react-redux"
 import { changeCategory } from 'store/Action'
@@ -12,7 +13,6 @@ ListItem.propTypes = {
   clickEvent: PropTypes.func
 }
 function ListItem(props) {
-  console.log(props.category)
   const list = Object.keys(props.category).map((key) => {
     return (
       <li
@@ -22,7 +22,7 @@ function ListItem(props) {
         <button
           className='c-btn'
           data-id={key}
-          onClick={(e) => props.clickEvent(e)}>
+          onClick={(e) => props.clickEvent(e,props.category[key].sub)}>
           {props.category[key].ja}
         </button>
       </li >
@@ -43,12 +43,19 @@ class CategoryList extends React.Component {
     }
   }
 
-  handleClick(e) {
+  handleClick(e,sub) {
     const _this = this
-    if (e.target.classList.contains('is-active')) {
-      e.target.classList.remove('is-active')
+    console.log(sub)
+    if(sub) {
+      Router.push({
+        pathname: '/account/category_sub',
+        query: { category: e.target.getAttribute("data-id") }
+      })
+    }
+    if (e.target.classList.contains('active')) {
+      e.target.classList.remove('active')
     } else {
-      e.target.classList.add('is-active')
+      e.target.classList.add('active')
       // storeに送信する
       _this.props.changeCategory({
         id: e.target.getAttribute("data-id"),
@@ -60,22 +67,32 @@ class CategoryList extends React.Component {
   render() {
     console.log('🐣 CategoryList')
     if (Object.keys(this.props.data).length < 1) return false
-    console.log(this.props.data)
 
     // イベントが発火するのは別のコンポーネントなのでthisを固定しておく
     const bindHandleClick = this.handleClick.bind(this)
     const listWrap = Object.keys(this.props.data).map((key) => {
-      const cate = this.props.data[key]
+      let cate = this.props.data[key]
+      let temp = Object.entries(cate)
+      // orderの順に並び替える
+      // https://pisuke-code.com/js-sort-object-by-key-or-value/
+      temp.sort((p1, p2) => {
+        var p1Val = p1[1]['order'], p2Val = p2[1]['order']
+        return p1Val - p2Val
+      })
+      cate = Object.fromEntries(temp)
       return (
-        <div key={key} id={key} >
-          <p>{key}</p>
+        <div key={key} data-target={key} >
           <ListItem category={cate} clickEvent={bindHandleClick}/>
         </div>
       )
     })
 
     return (
-      <div>{listWrap}</div>
+      <div className={styles.cont} data-active={this.props.payType}>
+        <div className={styles.cont_inr}>
+          {listWrap}
+        </div>
+      </div>
     )
   }
 }
@@ -83,12 +100,14 @@ class CategoryList extends React.Component {
 CategoryList.propTypes = {
   data: PropTypes.object,
   changeCategory: PropTypes.func,
+  payType: PropTypes.string
 }
 
 function mapStateToProps(state) {
   return {
-    categoryType: state.data.category.id,
-    categoryTxt: state.data.category.txt
+    payType: state.inputData.pay.id,
+    categoryType: state.inputData.category.id,
+    categoryTxt: state.inputData.category.txt
   }
 }
 

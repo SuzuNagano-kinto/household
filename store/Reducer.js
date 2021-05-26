@@ -7,7 +7,7 @@ import { ActionTypes } from './Action'
 // 各Actionのtypeごとによって処理内容を変更できます
 
 let initialState = {
-  data: {
+  inputData: {
     num: 0,
     result: 0,
     pay: {
@@ -15,8 +15,12 @@ let initialState = {
       txt: '支出'
     },
     category: {
-      id: 'food',
-      txt: '食費'
+      id: '',
+      txt: '',
+      sub: {
+        id: '',
+        txt: '',
+      }
     }
   }
 }
@@ -25,8 +29,8 @@ export default function reducer(state = initialState, action) {
   console.log(state)
   switch (action.type) {
   case ActionTypes.CALC:
-    state.data.num = action.num
-    state.data.result = action.result
+    state.inputData.num = action.num
+    state.inputData.result = action.result
 
     // Reducerでは新規にオブジェクトや配列を返す必要がある
     // https://qiita.com/sakamotoryouta/items/6da7b2e8c7ff6490026e
@@ -35,13 +39,13 @@ export default function reducer(state = initialState, action) {
     }
 
   case ActionTypes.PAY:
-    state.data.pay = action.pay
+    state.inputData.pay = action.pay
     return {
       ...state
     }
 
   case ActionTypes.CATEGORY:
-    state.data.category = action.category
+    state.inputData.category = action.category
     return {
       ...state
     }
