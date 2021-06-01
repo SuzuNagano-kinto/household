@@ -22,7 +22,8 @@ let initialState = {
         txt: '',
       }
     }
-  }
+  },
+  category:{}
 }
 
 export default function reducer(state = initialState, action) {
@@ -49,6 +50,19 @@ export default function reducer(state = initialState, action) {
     return {
       ...state
     }
+
+  case ActionTypes.SUBCATEGORY:
+    state.inputData.category.sub = action.subcategory
+    return {
+      ...state
+    }
+
+  case ActionTypes.SET:
+    state.category = action.data
+    return {
+      ...state
+    }
+
   default:
     return state
   }

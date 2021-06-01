@@ -5,7 +5,9 @@
 export const ActionTypes = {
   CALC: 'CALC',
   PAY: 'PAY',
-  CATEGORY: 'CATEGORY'
+  CATEGORY: 'CATEGORY',
+  SUBCATEGORY: 'SUBCATEGORY',
+  SET: 'SET',
 }
 
 // 金額入力時に呼び出し
@@ -32,5 +34,23 @@ export const changeCategory = (result) => (dispatch) => {
   return dispatch({
     type: ActionTypes.CATEGORY,
     category: result
+  })
+}
+
+// カテゴリーの変更時に呼び出し
+export const changeSubCategory = (result) => (dispatch) => {
+  console.log('changeSubCategory',result)
+  return dispatch({
+    type: ActionTypes.SUBCATEGORY,
+    subcategory: result
+  })
+}
+
+// 全カテゴリー
+export const setAllCategory = (result) => (dispatch) => {
+  console.log('setAllCategory',result)
+  return dispatch({
+    type: ActionTypes.SET,
+    data: result
   })
 }

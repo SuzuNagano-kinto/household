@@ -6,6 +6,8 @@ import { connect } from "react-redux"
 
 import Heading from "components/Heading"
 import CalcInput from "components/CalcInput"
+
+// CSS
 import styles from "styles/page/input_bord.module.scss"
 
 class bord extends React.Component {
@@ -27,6 +29,7 @@ class bord extends React.Component {
             <p className={styles.row_cate}>
               {this.props.payTxt && <span>{this.props.payTxt}</span>}
               {this.props.categoryTxt && <span>{this.props.categoryTxt}</span>}
+              {this.props.subCtegoryTxt && <span>{this.props.subCtegoryTxt}</span>}
             </p>
             <Link href="/account/category">
               <a className="c-btn--small">
@@ -68,6 +71,7 @@ bord.propTypes = {
   calculate: PropTypes.func,
   payTxt: PropTypes.string,
   categoryTxt: PropTypes.string,
+  subCtegoryTxt: PropTypes.string,
 }
 
 // mapStateToPropsはstateの中から、対象のコンポーネントに合ったプロパティを生成する為のもの
@@ -75,7 +79,8 @@ function mapStateToProps(state) {
   return {
     result: state.inputData.result,
     payTxt: state.inputData.pay.txt,
-    categoryTxt: state.inputData.category.txt
+    categoryTxt: state.inputData.category.txt,
+    subCtegoryTxt: state.inputData.category.sub.txt,
   }
 }
 

@@ -1,16 +1,51 @@
 import React from 'react'
-import Router from 'next/router'
+// import Router from 'next/router'
 import PropTypes from "prop-types"
 import { connect } from "react-redux"
 import { changeCategory } from 'store/Action'
+import { changeSubCategory } from 'store/Action'
+import { removeClass } from "tool/removeClass"
+import Accordion from "tool/Accordion"
 import styles from 'styles/components/categoryList.module.scss'
+
+/**-----------------------
+* 各サブカテゴリーごとのリストを生成する
+-----------------------*/
+SubListItem.propTypes = {
+  subCategory: PropTypes.object,
+  clickEvent: PropTypes.func
+}
+
+function SubListItem(props) {
+  const list = Object.keys(props.subCategory).map((key) => {
+    return (
+      <li
+        key={'item-sub' + key}
+        className={`${styles.item_sub}`}
+      >
+        <button
+          className='c-btn'
+          data-id={key}
+          onClick={(e) => props.clickEvent(e)}>
+          <span>{props.subCategory[key].ja}</span>
+        </button>
+      </li>
+    )
+  })
+  return (
+    <div className={`${styles.wrap_sub}`}>
+      <ul className={`sub-category`}>{list}</ul>
+    </div>
+  )
+}
 
 /**-----------------------
 * 各カテゴリーごとのリストを生成する
 -----------------------*/
 ListItem.propTypes = {
   category: PropTypes.object,
-  clickEvent: PropTypes.func
+  clickCategory: PropTypes.func,
+  clickSubCategory: PropTypes.func,
 }
 function ListItem(props) {
   const list = Object.keys(props.category).map((key) => {
@@ -22,15 +57,16 @@ function ListItem(props) {
         <button
           className='c-btn'
           data-id={key}
-          onClick={(e) => props.clickEvent(e,props.category[key].sub)}>
-          {props.category[key].ja}
+          onClick={(e) => props.clickCategory(e, props.category[key].sub)}>
+          <span>{props.category[key].ja}</span>
         </button>
+        {props.category[key].sub && <SubListItem subCategory={props.category[key].sub} clickEvent={props.clickCategory} />}
       </li >
     )
   })
 
   return (
-    <ul className={styles.wrap}>{list}</ul>
+    <ul className={`${styles.wrap} category`}>{list}</ul>
   )
 }
 
@@ -43,25 +79,53 @@ class CategoryList extends React.Component {
     }
   }
 
-  handleClick(e,sub) {
-    const _this = this
-    console.log(sub)
-    if(sub) {
-      Router.push({
-        pathname: '/account/category_sub',
-        query: { category: e.target.getAttribute("data-id") }
-      })
-    }
-    if (e.target.classList.contains('active')) {
-      e.target.classList.remove('active')
-    } else {
+  categoryClickEvent(e, sub) {
+    // サブカテゴリーだったら
+    if (e.target.closest(".sub-category")) {
+      removeClass(e.target, ".sub-category")
       e.target.classList.add('active')
       // storeに送信する
-      _this.props.changeCategory({
-        id: e.target.getAttribute("data-id"),
-        txt: e.target.innerText
+      this.props.changeCategory({
+        id: this.props.categoryType,
+        txt: this.props.categoryTxt,
+        sub: {
+          id: e.target.getAttribute("data-id"),
+          txt: e.target.innerText,
+        }
       })
+    // 親カテゴリーだったら
+    } else if (e.target.closest(".category")) {
+      let acd
+      if (sub) {
+        acd = new Accordion(e.target.nextElementSibling)
+      }
+
+      if (e.target.classList.contains('active')) {
+        e.target.classList.remove('active')
+        if (sub) {
+          acd.slideUp()
+        }
+      } else {
+        removeClass(e.target, ".category")
+        e.target.classList.add('active')
+        if (sub) {
+          acd.slideDown()
+        }
+        // storeに送信する
+        this.props.changeCategory({
+          id: e.target.getAttribute("data-id"),
+          txt: e.target.innerText
+        })
+      }
     }
+  }
+
+  subCategoryClickEvent(e) {
+    console.log("sub click")
+    this.props.changeSubCategory({
+      id: e.target.getAttribute("data-id"),
+      txt: e.target.innerText
+    })
   }
 
   render() {
@@ -69,7 +133,9 @@ class CategoryList extends React.Component {
     if (Object.keys(this.props.data).length < 1) return false
 
     // イベントが発火するのは別のコンポーネントなのでthisを固定しておく
-    const bindHandleClick = this.handleClick.bind(this)
+    const bindCategoryClick = this.categoryClickEvent.bind(this)
+    const bindSubCategoryClick = this.subCategoryClickEvent.bind(this)
+
     const listWrap = Object.keys(this.props.data).map((key) => {
       let cate = this.props.data[key]
       let temp = Object.entries(cate)
@@ -82,7 +148,10 @@ class CategoryList extends React.Component {
       cate = Object.fromEntries(temp)
       return (
         <div key={key} data-target={key} >
-          <ListItem category={cate} clickEvent={bindHandleClick}/>
+          <ListItem
+            category={cate}
+            clickCategory={bindCategoryClick}
+            clickSubCategory={bindSubCategoryClick} />
         </div>
       )
     })
@@ -100,7 +169,10 @@ class CategoryList extends React.Component {
 CategoryList.propTypes = {
   data: PropTypes.object,
   changeCategory: PropTypes.func,
-  payType: PropTypes.string
+  changeSubCategory: PropTypes.func,
+  payType: PropTypes.string,
+  categoryType: PropTypes.string,
+  categoryTxt: PropTypes.string,
 }
 
 function mapStateToProps(state) {
@@ -114,6 +186,7 @@ function mapStateToProps(state) {
 function mapDispatchToProps(dispatch) {
   return {
     changeCategory: (obj) => dispatch(changeCategory(obj)),
+    changeSubCategory: (obj) => dispatch(changeSubCategory(obj)),
   }
 }
 

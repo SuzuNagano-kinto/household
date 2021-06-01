@@ -2,7 +2,7 @@ import React from "react"
 import Link from "next/link"
 import PropTypes from "prop-types"
 import { connect } from "react-redux"
-
+import { setAllCategory } from 'store/Action'
 import firebase from "firebase/app"
 import "firebase/firestore"
 
@@ -10,8 +10,7 @@ import Heading from "components/Heading"
 import CalcInput from "components/CalcInput"
 import PayCategory from "components/PayCategory"
 import CategoryList from "components/CategoryList"
-// import styles from "styles/page/input_category.module.scss"
-
+import styles from "styles/page/input_category.module.scss"
 class Category extends React.Component {
   constructor(props) {
     super(props)
@@ -32,7 +31,7 @@ class Category extends React.Component {
   render() {
     console.log(this.state)
     return (
-      <div className="input_category">
+      <div className={styles.wrap}>
         <Heading txt="家計簿" sub="- カテゴリ" icon="account" />
         <PayCategory />
         <CalcInput style="bord" />
@@ -72,12 +71,14 @@ class Category extends React.Component {
     const usersCollectionRef = db.collection("user")
     const cateRef = usersCollectionRef.doc("category")
 
-    let self = this
+    let _this = this
     cateRef.get().then((doc) => {
-      self.setState({ data: doc.data() })
+      _this.setState({ data: doc.data() })
+      // storeに送信する
+      _this.props.setAllCategory(doc.data())
     })
 
-    console.log(this.state.inputData)
+    console.log(this.state.data)
   }
 }
 
@@ -94,4 +95,10 @@ function mapStateToProps(state) {
   }
 }
 
-export default connect(mapStateToProps)(Category)
+function mapDispatchToProps(dispatch) {
+  return {
+    setAllCategory: (obj) => dispatch(setAllCategory(obj)),
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Category)

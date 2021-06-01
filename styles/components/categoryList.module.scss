@@ -3,7 +3,7 @@
 // categoryList
 .cont {
   overflow: hidden;
-  margin-bottom: 50px;
+  margin-bottom: 30px;
   &_inr {
     display: flex;
     > div {
@@ -25,14 +25,28 @@
   }
 }
 .wrap {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-between;
+  padding-top: 10px;
+  &_sub {
+    overflow: hidden;
+    height: 0px;
+
+    ul {
+      padding: 15px 15px 0;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+    }
+  }
 }
 .item {
-  width: 46%;
-  margin-bottom: 15px;
+  width: 94%;
+  margin: 0 auto 20px;
+  &_sub {
+    width: 46%;
+    padding-bottom: 15px;
+  }
   button {
     width: 100%;
+    text-align: left;
   }
 }

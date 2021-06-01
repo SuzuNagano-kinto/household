@@ -1,16 +1,6 @@
 @import "foundation";
 
 // input_bord
-.result {
-  display: flex;
-  justify-content: space-between;
-  align-items: flex-end;
-  margin: 20px 0;
-
-  &_num {
-    font-size: 24px;
-  }
-}
 .row {
   display: flex;
   justify-content: space-between;

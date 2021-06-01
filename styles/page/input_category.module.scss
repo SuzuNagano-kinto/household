@@ -1,13 +1,6 @@
 @import "foundation";
 
 // input_category
-.result {
-  display: flex;
-  justify-content: space-between;
-  align-items: flex-end;
-  margin: 20px 0;
-
-  &_num {
-    font-size: 24px;
-  }
+.wrap {
+  margin-bottom: 40px;
 }
