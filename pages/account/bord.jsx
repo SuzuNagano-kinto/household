@@ -6,6 +6,7 @@ import { connect } from "react-redux"
 
 import Heading from "components/Heading"
 import CalcInput from "components/CalcInput"
+import Modal from "components/Modal"
 
 // CSS
 import styles from "styles/page/input_bord.module.scss"
@@ -14,7 +15,17 @@ class bord extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
-      pay: this.props.payTxt
+      pay: this.props.payTxt,
+      modal: false
+    }
+  }
+
+  toggleModal() {
+    console.log("toggleModal")
+    if(this.state.modal == false){
+      this.setState({ modal: true })
+    } else {
+      this.setState({ modal: false })
     }
   }
 
@@ -39,12 +50,19 @@ class bord extends React.Component {
           </li>
 
           <li className={styles.row}>
-            <p>2021/4</p>
-            <Link href="/account/bord">
-              <a className="c-btn--small">
-                <span className="c-btn__inr">変更</span>
-              </a>
-            </Link>
+            <p>
+              {this.props.date.year}
+              <span>/</span>
+              {this.props.date.month}
+              <span>/</span>
+              {this.props.date.day}
+            </p>
+            <button
+              className="c-btn--small"
+              onClick={(e) => this.toggleModal(e)}
+            >
+              <span className="c-btn__inr">変更</span>
+            </button>
           </li>
 
           <li className={`${styles.row_col}`}>
@@ -61,8 +79,14 @@ class bord extends React.Component {
             <a className="c-btn">記録する</a>
           </Link>
         </div>
+
+        <Modal flag={this.state.modal} toggle={()=>{this.toggleModal()}} />
       </div>
     )
+  }
+
+  componentDidUpdate() {
+
   }
 }
 
@@ -72,6 +96,7 @@ bord.propTypes = {
   payTxt: PropTypes.string,
   categoryTxt: PropTypes.string,
   subCtegoryTxt: PropTypes.string,
+  date: PropTypes.object
 }
 
 // mapStateToPropsはstateの中から、対象のコンポーネントに合ったプロパティを生成する為のもの
@@ -80,7 +105,8 @@ function mapStateToProps(state) {
     result: state.inputData.result,
     payTxt: state.inputData.pay.txt,
     categoryTxt: state.inputData.category.txt,
-    subCtegoryTxt: state.inputData.category.sub.txt,
+    subCtegoryTxt: state.inputData.category.sub ? state.inputData.category.sub.txt : "",
+    date: state.inputData.date
   }
 }
 

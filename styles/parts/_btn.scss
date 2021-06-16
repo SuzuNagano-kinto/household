@@ -18,14 +18,22 @@
     padding: 12px 10px;
   }
 
+  &.active {
+    @include neumorphismInset();
+    transition: all 0.2s ease-in;
+  }
+
+
   &__wrap--center {
     display: flex;
     align-items: center;
     justify-content: space-evenly;
   }
 
-  &.active {
-    @include neumorphismInset();
-    transition: all 0.2s ease-in;
+  &__wrap {
+    display: flex;
+    margin-top: 20px;
+    flex-direction: column;
+    align-items: center;
   }
 }

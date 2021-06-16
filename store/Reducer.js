@@ -6,9 +6,9 @@ import { ActionTypes } from './Action'
 // 引数のstateの更新するのではなく、新しいstateのオブジェクトを返します
 // 各Actionのtypeごとによって処理内容を変更できます
 
+let date = new Date
 let initialState = {
   inputData: {
-    num: 0,
     result: 0,
     pay: {
       id: 'expense',
@@ -21,6 +21,11 @@ let initialState = {
         id: '',
         txt: '',
       }
+    },
+    date: {
+      year: date.getFullYear(),
+      month: date.getMonth() + 1,
+      day: date.getDate(),
     }
   },
   category:{}
@@ -30,7 +35,6 @@ export default function reducer(state = initialState, action) {
   console.log(state)
   switch (action.type) {
   case ActionTypes.CALC:
-    state.inputData.num = action.num
     state.inputData.result = action.result
 
     // Reducerでは新規にオブジェクトや配列を返す必要がある
@@ -59,6 +63,12 @@ export default function reducer(state = initialState, action) {
 
   case ActionTypes.SET:
     state.category = action.data
+    return {
+      ...state
+    }
+
+  case ActionTypes.CAHNGEDAY:
+    state.inputData.date = action.date
     return {
       ...state
     }

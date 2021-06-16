@@ -8,6 +8,7 @@ export const ActionTypes = {
   CATEGORY: 'CATEGORY',
   SUBCATEGORY: 'SUBCATEGORY',
   SET: 'SET',
+  CAHNGEDAY: 'CAHNGEDAY',
 }
 
 // 金額入力時に呼び出し
@@ -52,5 +53,14 @@ export const setAllCategory = (result) => (dispatch) => {
   return dispatch({
     type: ActionTypes.SET,
     data: result
+  })
+}
+
+// 日付入力で変更時
+export const changeDay = (obj) => (dispatch) => {
+  console.log('changeDay',obj)
+  return dispatch({
+    type: ActionTypes.CAHNGEDAY,
+    date: obj
   })
 }
