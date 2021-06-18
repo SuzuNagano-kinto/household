@@ -26,9 +26,13 @@
       top: 0;
       left: 0;
       font-size: 20px;
+      transition: all 0.5s;
 
       &[data-active="true"] {
         background: #ffebeb;
+      }
+      &:active {
+        @include neumorphismInset(50%);
       }
     }
   }

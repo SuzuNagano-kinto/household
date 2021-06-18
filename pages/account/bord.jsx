@@ -7,7 +7,7 @@ import { connect } from "react-redux"
 import Heading from "components/Heading"
 import CalcInput from "components/CalcInput"
 import Modal from "components/Modal"
-
+import CalendarItem from 'components/CalendarItem'
 // CSS
 import styles from "styles/page/input_bord.module.scss"
 
@@ -19,18 +19,14 @@ class bord extends React.Component {
       modal: false
     }
   }
-
   toggleModal() {
-    console.log("toggleModal")
-    if(this.state.modal == false){
-      this.setState({ modal: true })
-    } else {
-      this.setState({ modal: false })
-    }
+    // 子コンポーネントの実体を取得し、メソッドを呼び出す。
+    this.modalRef.current.toggleModal()
   }
 
   render() {
     console.log("🐓bord page")
+    this.modalRef = React.createRef()
     return (
       <div className="input_bord">
         <Heading txt="家計簿" sub="- 詳細" icon="account" />
@@ -59,7 +55,7 @@ class bord extends React.Component {
             </p>
             <button
               className="c-btn--small"
-              onClick={(e) => this.toggleModal(e)}
+              onClick={() => this.toggleModal()}
             >
               <span className="c-btn__inr">変更</span>
             </button>
@@ -80,13 +76,22 @@ class bord extends React.Component {
           </Link>
         </div>
 
-        <Modal flag={this.state.modal} toggle={()=>{this.toggleModal()}} />
+        <Modal
+          target="calender"
+          ref={this.modalRef}>
+          <CalendarItem />
+          <div className={styles.footer}>
+            <ul className="c-btn__wrap">
+              <li>
+                <button
+                  className="c-btn--small"
+                  onClick={()=>{this.toggleModal()}}>決定</button>
+              </li>
+            </ul>
+          </div>
+        </Modal>
       </div>
     )
-  }
-
-  componentDidUpdate() {
-
   }
 }
 

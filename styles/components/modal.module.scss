@@ -1,11 +1,6 @@
 @import "foundation";
 .wrap {
-  &[data-opne="false"] {
-    display: none;
-  }
-  &[data-opne="true"] {
-    display: block;
-  }
+  display: none;
 }
 .cont {
   display: flex;
@@ -16,15 +11,14 @@
   left: 0;
   width: 100vw;
   height: 100%;
-  // background: #0009;
-  // display: block;
-  // display: none;
 }
 .body {
   background: $baseColor;
   width: 100%;
   min-height: 75vh;
   box-shadow: 0px -5px 13px $darkShadowColor;
+  transform: translateY(100%);
+
 }
 .inr {
   padding: 10px;

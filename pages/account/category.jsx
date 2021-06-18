@@ -3,29 +3,32 @@ import Link from "next/link"
 import PropTypes from "prop-types"
 import { connect } from "react-redux"
 import { setAllCategory } from 'store/Action'
-import firebase from "firebase/app"
+// import firebase from "firebase/app"
 import "firebase/firestore"
 
 import Heading from "components/Heading"
 import CalcInput from "components/CalcInput"
 import PayCategory from "components/PayCategory"
 import CategoryList from "components/CategoryList"
+import getFirestore from "tool/getFirestore"
 import styles from "styles/page/input_category.module.scss"
 class Category extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
       name: "",
-      data: {}
+      data: {},
+      fs: new getFirestore()
     }
 
-    this.init()
+    this.state.fs.init()
+    this.setData()
   }
 
   // DOM にレンダーされた後に実行
   componentDidMount() {
     console.log("🐓 componentDidMount")
-    this.getData()
+    // this.setData()
   }
 
   render() {
@@ -45,29 +48,10 @@ class Category extends React.Component {
     )
   }
 
-  init() {
-    console.log("init")
-    // Your web app's Firebase configuration
-    // For Firebase JS SDK v7.20.0 and later, measurementId is optional
-    var firebaseConfig = {
-      apiKey: "AIzaSyBFFD4z2aB6Xg3lZSTDzINh6qlnsTVS_4M",
-      authDomain: "household-accounts-system.firebaseapp.com",
-      projectId: "household-accounts-system",
-      storageBucket: "household-accounts-system.appspot.com",
-      messagingSenderId: "1012625851416",
-      appId: "1:1012625851416:web:4b8827f72d9bcf99322f6d",
-      measurementId: "G-0NG8R0KTEY"
-    }
-    // Initialize Firebase
-    if (firebase.apps.length === 0) {
-      firebase.initializeApp(firebaseConfig)
-    }
-  }
-
-  getData() {
+  setData() {
     console.log("getData")
 
-    const db = firebase.firestore()
+    const db = this.state.fs.getData()
     const usersCollectionRef = db.collection("user")
     const cateRef = usersCollectionRef.doc("category")
 
