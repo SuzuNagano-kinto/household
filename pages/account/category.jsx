@@ -25,14 +25,7 @@ class Category extends React.Component {
     this.setData()
   }
 
-  // DOM にレンダーされた後に実行
-  componentDidMount() {
-    console.log("🐓 componentDidMount")
-    // this.setData()
-  }
-
   render() {
-    console.log(this.state)
     return (
       <div className={styles.wrap}>
         <Heading txt="家計簿" sub="- カテゴリ" icon="account" />
@@ -49,8 +42,6 @@ class Category extends React.Component {
   }
 
   setData() {
-    console.log("getData")
-
     const db = this.state.fs.getData()
     const usersCollectionRef = db.collection("user")
     const cateRef = usersCollectionRef.doc("category")

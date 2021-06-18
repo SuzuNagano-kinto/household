@@ -1,13 +1,16 @@
 import React from "react"
 import Link from "next/link"
+import Router from 'next/router'
 import PropTypes from "prop-types"
 // connectとは、Reduxの「store」にReactがアクセスするための関数
 import { connect } from "react-redux"
 
 import Heading from "components/Heading"
+import Navi from "components/Navi"
 import CalcInput from "components/CalcInput"
 import Modal from "components/Modal"
 import CalendarItem from 'components/CalendarItem'
+import getFirestore from "tool/getFirestore"
 // CSS
 import styles from "styles/page/input_bord.module.scss"
 
@@ -16,12 +19,28 @@ class bord extends React.Component {
     super(props)
     this.state = {
       pay: this.props.payTxt,
-      modal: false
+      modal: false,
     }
+    this.fs = new getFirestore()
   }
   toggleModal() {
     // 子コンポーネントの実体を取得し、メソッドを呼び出す。
     this.modalRef.current.toggleModal()
+  }
+
+  sendData() {
+    console.log(`記録する！`)
+    const sendData = async()=>{
+      this.fs.init()
+      let data = this.props.inputData
+      const db = this.fs.getData()
+      const logRef = db.collection("user").doc("log").collection('history')
+      logRef.add(data)
+    }
+    sendData().then(()=>{
+      Router.push("/account/done")
+    })
+
   }
 
   render() {
@@ -47,11 +66,11 @@ class bord extends React.Component {
 
           <li className={styles.row}>
             <p>
-              {this.props.date.year}
+              {this.props.year}
               <span>/</span>
-              {this.props.date.month}
+              {this.props.month}
               <span>/</span>
-              {this.props.date.day}
+              {this.props.day}
             </p>
             <button
               className="c-btn--small"
@@ -67,14 +86,16 @@ class bord extends React.Component {
           </li>
         </ul>
 
-        <div className="c-btn__wrap--center">
+        <div className="c-btn__wrap">
           <Link href="/account/">
             <a className="c-btn">もどる</a>
           </Link>
-          <Link href="/account/">
-            <a className="c-btn">記録する</a>
-          </Link>
+          <button
+            className="c-btn"
+            onClick={() => { this.sendData() }}>記録する</button>
         </div>
+
+        <Navi page="account"/>
 
         <Modal
           target="calender"
@@ -85,7 +106,7 @@ class bord extends React.Component {
               <li>
                 <button
                   className="c-btn--small"
-                  onClick={()=>{this.toggleModal()}}>決定</button>
+                  onClick={() => { this.toggleModal() }}>決定</button>
               </li>
             </ul>
           </div>
@@ -101,17 +122,23 @@ bord.propTypes = {
   payTxt: PropTypes.string,
   categoryTxt: PropTypes.string,
   subCtegoryTxt: PropTypes.string,
-  date: PropTypes.object
+  inputData: PropTypes.object,
+  year: PropTypes.number,
+  month: PropTypes.number,
+  day: PropTypes.number,
 }
 
 // mapStateToPropsはstateの中から、対象のコンポーネントに合ったプロパティを生成する為のもの
 function mapStateToProps(state) {
   return {
+    inputData: state.inputData,
     result: state.inputData.result,
     payTxt: state.inputData.pay.txt,
     categoryTxt: state.inputData.category.txt,
     subCtegoryTxt: state.inputData.category.sub ? state.inputData.category.sub.txt : "",
-    date: state.inputData.date
+    year: state.inputData.year,
+    month: state.inputData.month,
+    day: state.inputData.day,
   }
 }
 

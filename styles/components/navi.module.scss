@@ -1,0 +1,19 @@
+@import "foundation";
+
+.wrap {
+  position: fixed;
+  width: 100%;
+  bottom: 0;
+  left: 0;
+  box-shadow: 0px 1px 4px $darkShadowColor, 0px -6px 3px $lightShadowColor;
+}
+.list {
+  display: flex;
+  justify-content: space-evenly;
+
+  a {
+    display: block;
+    padding: 20px;
+    font-size: 10px;
+  }
+}

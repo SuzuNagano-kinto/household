@@ -36,6 +36,6 @@ export default function MyApp({ Component, pageProps }) {
   )
 }
 MyApp.propTypes = {
-  Component: PropTypes.object,
+  Component: PropTypes.any,
   pageProps: PropTypes.object
 }

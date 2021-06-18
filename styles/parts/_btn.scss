@@ -1,7 +1,7 @@
 .c-btn {
   display: inline-block;
   padding: 12px;
-  min-width: 40%;
+  min-width: 200px;
   text-align: center;
   border-radius: 3px;
   transition: all 0.2s ease-in;
@@ -20,9 +20,10 @@
 
   &.active {
     @include neumorphismInset();
-    transition: all 0.2s ease-in;
   }
-
+  &:active {
+    @include neumorphismInset();
+  }
 
   &__wrap--center {
     display: flex;
@@ -35,5 +36,9 @@
     margin-top: 20px;
     flex-direction: column;
     align-items: center;
+
+    &> *:not(:last-child) {
+      margin-bottom: 20px;
+    }
   }
 }

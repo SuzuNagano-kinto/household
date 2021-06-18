@@ -3,6 +3,7 @@ import PropTypes from 'prop-types'
 import Link from 'next/link'
 
 import Heading from "components/Heading"
+import Navi from "components/Navi"
 import Calculator from 'components/Calculator'
 import CalcInput from "components/CalcInput"
 
@@ -43,6 +44,7 @@ class Input extends React.Component {
             </a>
           </Link>
         </div>
+        <Navi page="account"/>
       </div>
     )
   }

@@ -22,11 +22,9 @@ let initialState = {
         txt: '',
       }
     },
-    date: {
-      year: date.getFullYear(),
-      month: date.getMonth() + 1,
-      day: date.getDate(),
-    }
+    year: date.getFullYear(),
+    month: date.getMonth() + 1,
+    day: date.getDate(),
   },
   category:{}
 }
@@ -68,7 +66,9 @@ export default function reducer(state = initialState, action) {
     }
 
   case ActionTypes.CAHNGEDAY:
-    state.inputData.date = action.date
+    state.inputData.year = action.date.year
+    state.inputData.month = action.date.month
+    state.inputData.day = action.date.day
     return {
       ...state
     }

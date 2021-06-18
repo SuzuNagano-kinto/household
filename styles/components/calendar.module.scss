@@ -1,6 +1,7 @@
 @import "foundation";
 .wrap {
   background: $baseColor;
+  padding: 0 10px;
   :global {
     .react-calendar {
       &__navigation {
@@ -8,7 +9,7 @@
         font-size: 14px;
         font-weight: bold;
         &__arrow {
-          padding: 0 10px;
+          padding: 0 15px;
         }
         &__label {
           text-align: center;
@@ -65,9 +66,8 @@
             }
           }
           &--active {
-            // @include neumorphismInset();
-            border: 1px solid #dadada;
-            box-shadow: 0px 0px 3px #d2d4d9;
+            border: 1px solid #42b15b;
+            box-shadow: 0px 0px 3px #42654a;
           }
           &__not__current {
             color: #888;
