@@ -40,7 +40,7 @@ class Input extends React.Component {
             <a
               className="c-btn"
               onClick={() => this.props.calculate(this.props.result)}>
-              <span className="c-btn__inr">つぎへ</span>
+              <span className="c-btn__inr">次へ</span>
             </a>
           </Link>
         </div>

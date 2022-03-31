@@ -22,9 +22,11 @@ let initialState = {
         txt: '',
       }
     },
+    date: `${date.getFullYear()}/${date.getMonth() + 1}/${date.getDate()}`,
     year: date.getFullYear(),
     month: date.getMonth() + 1,
     day: date.getDate(),
+    memo: ''
   },
   category:{}
 }
@@ -69,6 +71,7 @@ export default function reducer(state = initialState, action) {
     state.inputData.year = action.date.year
     state.inputData.month = action.date.month
     state.inputData.day = action.date.day
+    state.inputData.date = `${action.date.year}/${action.date.month}/${action.date.day}`
     return {
       ...state
     }

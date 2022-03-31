@@ -42,63 +42,63 @@ class Calculator extends React.Component {
   render() {
     console.log('🐣 Calculator')
     return (
-      <div className={styles.calculator}>
+      <div className={styles.wrap}>
         <ul className={styles.grid}>
-          <li>
+          <li className={styles.item}>
             <Button value="7" onClick={() => this.handleClick('7')} />
           </li>
-          <li>
+          <li className={styles.item}>
             <Button value="8" onClick={() => this.handleClick('8')} />
           </li>
-          <li>
+          <li className={styles.item}>
             <Button value="9" onClick={() => this.handleClick('9')} />
           </li>
-          <li>
+          <li className={styles.item}>
             <Button
               value="÷"
               onClick={() => this.handleClick('divide')}
               active={this.state.divide} />
           </li>
-          <li>
+          <li className={styles.item}>
             <Button value="4" onClick={() => this.handleClick('4')} />
           </li>
-          <li>
+          <li className={styles.item}>
             <Button value="5" onClick={() => this.handleClick('5')} />
           </li>
-          <li>
+          <li className={styles.item}>
             <Button value="6" onClick={() => this.handleClick('6')} />
           </li>
-          <li>
+          <li className={styles.item}>
             <Button
               value="×"
               onClick={() => this.handleClick('multiply')}
               active={this.state.multiply} />
           </li>
-          <li>
+          <li className={styles.item}>
             <Button value="1" onClick={() => this.handleClick('1')} />
           </li>
-          <li>
+          <li className={styles.item}>
             <Button value="2" onClick={() => this.handleClick('2')} />
           </li>
-          <li>
+          <li className={styles.item}>
             <Button value="3" onClick={() => this.handleClick('3')} />
           </li>
-          <li>
+          <li className={styles.item}>
             <Button
               value="-"
               onClick={() => this.handleClick('subtract')}
               active={this.state.subtract} />
           </li>
-          <li>
+          <li className={styles.item}>
             <Button value="00" onClick={() => this.handleClick('00')} />
           </li>
-          <li>
+          <li className={styles.item}>
             <Button value="0" onClick={() => this.handleClick('0')} />
           </li>
-          <li>
+          <li className={styles.item}>
             <Button value="." onClick={() => this.handleClick('.')} />
           </li>
-          <li>
+          <li className={styles.item}>
             <Button
               value="+"
               onClick={() => this.handleClick('add')}
@@ -252,9 +252,10 @@ class Calculator extends React.Component {
         }
       }
     } else {
-      // 1 + + みたいに演算子を続けて押した場合初期化する
+      // 1 + + みたいに演算子を続けて押した場合、配列の最後にある演算子を書き換える
       if (typeof tempArr[tempArr.length - 1] !== 'number') {
-        this.destory()
+        console.log("演算子を続けて押した")
+        tempArr[tempArr.length-1] = calcMark
       } else {
         // = 以外の演算子を配列に追加
         if (calcMark !== 'equal') {

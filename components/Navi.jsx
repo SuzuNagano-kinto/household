@@ -38,19 +38,19 @@ function Navi(props) {
       },
       {
         txt: "家計簿",
-        link: "/account/bord"
+        link: "/account/"
       },
       {
         txt: "買い物リスト",
-        link: "/shopping"
+        link: "/shopping/"
       },
       {
         txt: "レシピ集",
-        link: "/recipe"
+        link: "/recipe/"
       },
       {
         txt: "設定",
-        link: "/setting"
+        link: "/setting/"
       },
     ]
   } else {
@@ -61,25 +61,25 @@ function Navi(props) {
       },
       {
         txt: "記録",
-        link: "/account/bord"
+        link: "/account/"
       },
       {
         txt: "分析",
-        link: "/account/analize"
+        link: "/account/analize/"
       },
       {
         txt: "履歴",
-        link: "/account/log"
+        link: "/account/history/"
       },
       {
         txt: "設定",
-        link: "/setting"
+        link: "/setting/"
       },
     ]
   }
 
   return (
-    <nav className={styles.wrap}>
+    <nav className={`${styles.wrap} ${styles + props.page ? styles.account : ""}`}>
       <ListItem items={NaviItems} />
     </nav>
   )

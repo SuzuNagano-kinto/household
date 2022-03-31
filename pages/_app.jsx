@@ -1,6 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import Head from 'next/head'
+import Heading from "components/Heading"
 import 'styles/style.scss'
 
 // 全ページで必要な挙動を書ける場所

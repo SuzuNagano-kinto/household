@@ -46,8 +46,77 @@
     padding-bottom: 15px;
   }
   button {
+    display: inline-flex;
+    align-items: center;
     width: 100%;
     min-width: 0;
     text-align: left;
+    &::before {
+      content: "";
+      display: inline-block;
+      width: 2em;
+      height: 2em;
+    }
+    span {
+      display: inline-block;
+      margin: 0 0 0 5px;
+    }
+
+    &[data-id="food"]:before {
+      background:url(../../images/account/icon_food.svg)no-repeat center;
+      background-size: 100%;
+    }
+    &[data-id="house"]:before {
+      background:url(../../images/account/icon_house.svg)no-repeat center;
+      background-size: 88%;
+    }
+    &[data-id="rent"]:before {
+      background:url(../../images/account/icon_rent.svg)no-repeat center;
+      background-size: 80%;
+    }
+    &[data-id="furniture"]:before {
+      background:url(../../images/account/icon_furniture.svg)no-repeat center;
+      background-size: 60%;
+    }
+    &[data-id="utility"]:before {
+      background:url(../../images/account/icon_utility.svg)no-repeat center;
+      background-size: 80%;
+    }
+    &[data-id="gas"]:before {
+      background:url(../../images/account/icon_gas.svg)no-repeat center;
+      background-size: 80%;
+    }
+    &[data-id="water"]:before {
+      background:url(../../images/account/icon_water.svg)no-repeat center;
+      background-size: 70%;
+    }
+    &[data-id="electric"]:before {
+      background:url(../../images/account/icon_electric.svg)no-repeat center;
+      background-size: 70%;
+    }
+    &[data-id="consumables"]:before {
+      background:url(../../images/account/icon_consumables.svg)no-repeat center;
+      background-size: 90%;
+    }
+    &[data-id="entertainment"]:before {
+      background:url(../../images/account/icon_entertainment.svg)no-repeat center;
+      background-size: 90%;
+    }
+    &[data-id="medical"]:before {
+      background:url(../../images/account/icon_medical.svg)no-repeat center;
+      background-size: 90%;
+    }
+    &[data-id="internet"]:before {
+      background:url(../../images/account/icon_internet.svg)no-repeat center;
+      background-size: 100%;
+    }
+    &[data-id="tax"]:before {
+      background:url(../../images/account/icon_tax.svg)no-repeat center;
+      background-size: 80%;
+    }
+    &[data-id="other"]:before {
+      background:url(../../images/account/icon_other.svg)no-repeat center;
+      background-size: 90%;
+    }
   }
 }

@@ -4,7 +4,7 @@ import PropTypes from "prop-types"
 import { connect } from "react-redux"
 import { changeCategory } from 'store/Action'
 import { changeSubCategory } from 'store/Action'
-import { removeClass } from "tool/removeClass"
+import { removeClass } from "tool/utils"
 import Accordion from "tool/Accordion"
 import styles from 'styles/components/categoryList.module.scss'
 
@@ -21,10 +21,10 @@ function SubListItem(props) {
     return (
       <li
         key={'item-sub' + key}
-        className={`${styles.item_sub}`}
+        className={`${styles.item_sub} ${key}`}
       >
         <button
-          className='c-btn'
+          className={`c-btn ${key}`}
           data-id={key}
           onClick={(e) => props.clickEvent(e)}>
           <span>{props.subCategory[key].ja}</span>
@@ -55,7 +55,7 @@ function ListItem(props) {
         className={`${styles.item}`}
       >
         <button
-          className='c-btn'
+          className={`c-btn ${styles.item}_${key}`}
           data-id={key}
           onClick={(e) => props.clickCategory(e, props.category[key].sub)}>
           <span>{props.category[key].ja}</span>

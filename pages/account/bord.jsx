@@ -28,14 +28,16 @@ class bord extends React.Component {
     this.modalRef.current.toggleModal()
   }
 
+  // データをfirebaseに送信する
   sendData() {
     console.log(`記録する！`)
     const sendData = async()=>{
       this.fs.init()
       let data = this.props.inputData
       const db = this.fs.getData()
-      const logRef = db.collection("user").doc("log").collection('history')
-      logRef.add(data)
+      const logRef = db.collection("user").doc("log")
+      logRef.set({ merge: true })
+      logRef.collection('history').add(data)
     }
     sendData().then(()=>{
       Router.push("/account/done")

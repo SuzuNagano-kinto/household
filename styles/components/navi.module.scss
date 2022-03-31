@@ -6,6 +6,7 @@
   bottom: 0;
   left: 0;
   box-shadow: 0px 1px 4px $darkShadowColor, 0px -6px 3px $lightShadowColor;
+  background: $baseColor;
 }
 .list {
   display: flex;
@@ -13,7 +14,57 @@
 
   a {
     display: block;
-    padding: 20px;
     font-size: 10px;
+    padding: 6px 10px 6px;
+    text-align: center;
+    &::before {
+      content: "";
+      display: block;
+      width: 32px;
+      height:16px;
+    }
+
+    span {
+      margin-top: 4px;
+    }
+  }
+}
+.account {
+  li {
+    &:nth-child(1) {
+      a::before {
+        background: url(../../images/icon_home.svg) no-repeat;
+        background-position: bottom center;
+        background-size: 1.6em 4.8em;
+      }
+    }
+    &:nth-child(2) {
+      a::before {
+        background: url(../../images/icon_pen.svg) no-repeat;
+        background-position: bottom center;
+        background-size: 1.6em 4.8em;
+      }
+    }
+    &:nth-child(3) {
+      a::before {
+        background: url(../../images/icon_graph.svg) no-repeat;
+        background-position: bottom center;
+        background-size: 1.6em 4.8em;
+      }
+    }
+    &:nth-child(4) {
+      a::before {
+        background: url(../../images/icon_history.svg) no-repeat;
+        background-position: bottom center;
+        background-size: 1.6em 4.8em;
+      }
+    }
+    &:nth-child(5) {
+      a::before {
+        background: url(../../images/icon_setting.svg) no-repeat;
+        background-position: bottom center;
+        background-size: 1.6em 4.8em;
+      }
+    }
   }
 }
